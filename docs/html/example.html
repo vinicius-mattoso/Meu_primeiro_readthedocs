@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exemplos de Uso &mdash; Documentação Big Anchoring Machine Learning Module alpha_01</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f6f34462"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=5f54a428"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Pesquisar" href="search.html" />
+    <link rel="next" title="Links Uteis" href="links.html" />
+    <link rel="prev" title="Big Anchoring ML Module - Documentação" href="biganchoring_ml_module.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Big Anchoring Machine Learning Module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar docs" aria-label="Pesquisar docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">BigAnchoringMachieLearningModule</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="historico.html">O projeto Big Anchoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="biganchoring_ml_module.html">Big Anchoring ML Module - Documentação</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Exemplos de Uso</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submissao-de-uma-task-ao-atena02">Submissão de uma task ao atena02</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#obtendo-satus-de-uma-task">Obtendo Satus de uma task</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#obtendo-o-mlflow-run-id-de-uma-task">Obtendo o MLFlow run_id de uma task</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cancelando-uma-task">Cancelando uma task</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="links.html">Links Uteis</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Big Anchoring Machine Learning Module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">BigAnchoringMachieLearningModule</a></li>
+      <li class="breadcrumb-item active">Exemplos de Uso</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/example.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="exemplos-de-uso">
+<h1>Exemplos de Uso<a class="headerlink" href="#exemplos-de-uso" title="Link to this heading"></a></h1>
+<p>Estes exemplos ilustram as principais funcionalidades dessa biblioteca em desenvolvimento.
+O objetivo dessa biblioteca é simplificar o acesso aos serviços de submissão de tarefas em diferentes infraestruturas,
+oferecidas pela API do Big Anchoring Machine Learning Module. A figura abaixo ilustra de maneira simplificada como o
+serviço está atuando em relação à infraestrutura do atena02.</p>
+<a class="reference internal image-reference" href="_static/images/architecture_API.png"><img alt="Descrição alternativa da imagem" class="align-center" src="_static/images/architecture_API.png" style="width: 80%;" /></a>
+<br><br><p>Nos exemplos a seguir, vemos inicialmente como fazer a submissão de uma tarefa para dentro do cluster, a obtenção do status da task que foi previamente submetida,
+a obtenção do run_id do mlflow utilizado dentro da task, se houver,  e, na sequência, como realizar o cancelamento de tarefa submetida.</p>
+<section id="submissao-de-uma-task-ao-atena02">
+<h2>Submissão de uma task ao atena02<a class="headerlink" href="#submissao-de-uma-task-ao-atena02" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">biganchoring_ml_module</span> <span class="kn">import</span> <span class="n">Submitter</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="c1"># Create a Submitter object</span>
+<span class="n">sb</span> <span class="o">=</span> <span class="n">Submitter</span><span class="p">(</span> <span class="n">dataset_name</span><span class="o">=</span><span class="s2">&quot;Dataset_name&quot;</span><span class="p">,</span>
+               <span class="n">dataset_file</span><span class="o">=</span><span class="s2">&quot;test_data.zip&quot;</span><span class="p">,</span>
+               <span class="n">processor_file</span><span class="o">=</span><span class="s2">&quot;test_processor.zip&quot;</span><span class="p">,</span>
+               <span class="n">runner_location</span><span class="o">=</span><span class="s2">&quot;atena02&quot;</span><span class="p">,</span> <span class="n">execution_mode</span><span class="o">=</span><span class="s2">&quot;mlflow&quot;</span><span class="p">,</span> <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;test_lib&quot;</span><span class="p">,</span>
+               <span class="n">execution_command</span><span class="o">=</span><span class="s2">&quot;mlflow run measurements_regression_training_right&quot;</span><span class="p">,</span>
+               <span class="n">instance_type</span><span class="o">=</span><span class="s2">&quot;gpu&quot;</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="s2">&quot;twinscie&quot;</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">submission_response</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="n">submit_task</span><span class="p">()</span>
+<span class="n">response_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">submission_response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">response_data</span><span class="p">:</span>
+   <span class="n">job_id</span> <span class="o">=</span> <span class="n">response_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;job_id&quot;</span><span class="p">)</span>
+   <span class="n">task_id</span> <span class="o">=</span> <span class="n">response_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+   <span class="n">experiment_name</span> <span class="o">=</span> <span class="n">response_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;experiment_name&quot;</span><span class="p">)</span>
+   <span class="n">instance_type</span> <span class="o">=</span> <span class="n">response_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;instance_type&quot;</span><span class="p">)</span>
+
+   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Job ID:</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ID: </span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;experiment_name: </span><span class="si">{</span><span class="n">experiment_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;instance_type: </span><span class="si">{</span><span class="n">instance_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="obtendo-satus-de-uma-task">
+<h2>Obtendo Satus de uma task<a class="headerlink" href="#obtendo-satus-de-uma-task" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">biganchoring_ml_module</span> <span class="kn">import</span> <span class="n">TaskHandler</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">task_id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Entre com o seu task_id:  &#39;</span><span class="p">)</span>
+
+<span class="n">task</span> <span class="o">=</span> <span class="n">TaskHandler</span><span class="p">(</span><span class="n">task_id</span><span class="p">)</span>
+<span class="n">status_response</span> <span class="o">=</span>  <span class="n">task</span><span class="o">.</span><span class="n">get_job_status</span><span class="p">()</span>
+
+<span class="n">status_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">status_response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">status_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="obtendo-o-mlflow-run-id-de-uma-task">
+<h2>Obtendo o MLFlow run_id de uma task<a class="headerlink" href="#obtendo-o-mlflow-run-id-de-uma-task" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">biganchoring_ml_module</span> <span class="kn">import</span> <span class="n">TaskHandler</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">task_id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Entre com o seu task_id:  &#39;</span><span class="p">)</span>
+
+<span class="n">task</span> <span class="o">=</span> <span class="n">TaskHandler</span><span class="p">(</span><span class="n">task_id</span><span class="p">)</span>
+<span class="n">status_response</span> <span class="o">=</span>  <span class="n">task</span><span class="o">.</span><span class="n">get_job_run_id</span><span class="p">()</span>
+
+<span class="n">status_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">status_response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">status_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="cancelando-uma-task">
+<h2>Cancelando uma task<a class="headerlink" href="#cancelando-uma-task" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">biganchoring_ml_module</span> <span class="kn">import</span> <span class="n">TaskHandler</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">task_id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Entre com o seu task_id:  &#39;</span><span class="p">)</span>
+
+<span class="n">task</span> <span class="o">=</span> <span class="n">TaskHandler</span><span class="p">(</span><span class="n">task_id</span><span class="p">)</span>
+<span class="n">status_response</span> <span class="o">=</span>  <span class="n">task</span><span class="o">.</span><span class="n">cancel_task</span><span class="p">()</span>
+
+<span class="n">status_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">status_response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">status_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="biganchoring_ml_module.html" class="btn btn-neutral float-left" title="Big Anchoring ML Module - Documentação" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="links.html" class="btn btn-neutral float-right" title="Links Uteis" accesskey="n" rel="next">Seguinte <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, ICA.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

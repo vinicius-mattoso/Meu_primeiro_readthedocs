@@ -1,0 +1,7 @@
+export ATENA_USER=<chave>
+
+export NODE_NAME=atn1b06n02
+
+export USER_NAME_AUTH=<USER_NAME_AUTH>
+export PASSWORD_AUTH=<PASSWORD_AUTH>
+export PORT=8008

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Big Anchoring ML Module - Documentação &mdash; Documentação Big Anchoring Machine Learning Module alpha_01</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f6f34462"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=5f54a428"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Pesquisar" href="search.html" />
+    <link rel="next" title="Exemplos de Uso" href="example.html" />
+    <link rel="prev" title="O projeto Big Anchoring" href="historico.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Big Anchoring Machine Learning Module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar docs" aria-label="Pesquisar docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">BigAnchoringMachieLearningModule</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="historico.html">O projeto Big Anchoring</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Big Anchoring ML Module - Documentação</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-biganchoring_ml_module.task_management">biganchoring_ml_module.task_management</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biganchoring_ml_module.task_management.TaskHandler"><code class="docutils literal notranslate"><span class="pre">TaskHandler</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-biganchoring_ml_module.submitter">biganchoring_ml_module.submitter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biganchoring_ml_module.submitter.Server_connection"><code class="docutils literal notranslate"><span class="pre">Server_connection</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biganchoring_ml_module.submitter.Submitter"><code class="docutils literal notranslate"><span class="pre">Submitter</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="example.html">Exemplos de Uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="links.html">Links Uteis</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Big Anchoring Machine Learning Module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">BigAnchoringMachieLearningModule</a></li>
+      <li class="breadcrumb-item active">Big Anchoring ML Module - Documentação</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/biganchoring_ml_module.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="big-anchoring-ml-module-documentacao">
+<h1>Big Anchoring ML Module - Documentação<a class="headerlink" href="#big-anchoring-ml-module-documentacao" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="_static/images/BA-ML-Module.png"><img alt="Descrição alternativa da imagem" class="align-center" src="_static/images/BA-ML-Module.png" style="width: 70%;" /></a>
+<p>Esta biblioteca Python foi desenvolvida para facilitar a submissão de tarefas em diferentes infraestruturas,
+incluindo a da Petrobras (atena02) e infraestruturas de nuvem, como Amazon Web Services (AWS) e Microsoft Azure.
+Com funções parametrizadas, a biblioteca elimina a necessidade de criar scripts separados para fazer requisições
+ao servidor, simplificando o processo de execução de tarefas no Big Anchoring ML Module.</p>
+<section id="module-biganchoring_ml_module.task_management">
+<span id="biganchoring-ml-module-task-management"></span><h2>biganchoring_ml_module.task_management<a class="headerlink" href="#module-biganchoring_ml_module.task_management" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="biganchoring_ml_module.task_management.TaskHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biganchoring_ml_module.task_management.</span></span><span class="sig-name descname"><span class="pre">TaskHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/task_management.html#TaskHandler"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.task_management.TaskHandler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biganchoring_ml_module.task_management.TaskHandler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/task_management.html#TaskHandler.__init__"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.task_management.TaskHandler.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biganchoring_ml_module.task_management.TaskHandler.cancel_task">
+<span class="sig-name descname"><span class="pre">cancel_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/task_management.html#TaskHandler.cancel_task"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.task_management.TaskHandler.cancel_task" title="Link to this definition"></a></dt>
+<dd><p>Cancels the task with the given task_id.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biganchoring_ml_module.task_management.TaskHandler.get_job_run_id">
+<span class="sig-name descname"><span class="pre">get_job_run_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/task_management.html#TaskHandler.get_job_run_id"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.task_management.TaskHandler.get_job_run_id" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Summary:</dt><dd><p>Retrieves the status of a job from the API using the job ID. 
+The function connects to the server using authentication credentials 
+stored in environment variables, sends a GET request to retrieve the 
+run id from the MLFLOW, and returns the API response.</p>
+</dd>
+<dt>Args:</dt><dd><p>task_id (int): The unique identifier for the job whose status is to be retrieved.</p>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: If the API response indicates a failure to retrieve the job status, such as an unexpected status code.</p>
+</dd>
+<dt>Returns:</dt><dd><p>requests.models.Response: The HTTP response object containing the job status information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biganchoring_ml_module.task_management.TaskHandler.get_job_status">
+<span class="sig-name descname"><span class="pre">get_job_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/task_management.html#TaskHandler.get_job_status"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.task_management.TaskHandler.get_job_status" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Summary:</dt><dd><p>Retrieves the status of a job from the API using the job ID. 
+The function connects to the server using authentication credentials 
+stored in environment variables, sends a GET request to retrieve the 
+job status, and returns the API response.</p>
+</dd>
+<dt>Args:</dt><dd><p>task_id (int): The unique identifier for the job whose status is to be retrieved.</p>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: If the API response indicates a failure to retrieve the job status, such as an unexpected status code.</p>
+</dd>
+<dt>Returns:</dt><dd><p>requests.models.Response: The HTTP response object containing the job status information.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-biganchoring_ml_module.submitter">
+<span id="biganchoring-ml-module-submitter"></span><h2>biganchoring_ml_module.submitter<a class="headerlink" href="#module-biganchoring_ml_module.submitter" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Server_connection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biganchoring_ml_module.submitter.</span></span><span class="sig-name descname"><span class="pre">Server_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atn1b01n28'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'admin'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'admin123'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'8008'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Server_connection"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Server_connection" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Server_connection foi desenvolvido para facilitar os processos de conexões.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Server_connection.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atn1b01n28'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'admin'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'admin123'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'8008'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Server_connection.__init__"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Server_connection.__init__" title="Link to this definition"></a></dt>
+<dd><dl>
+<dt>Summary:</dt><dd><p>Initializes the Server_connection class with the required arguments.</p>
+</dd>
+<dt>Args:</dt><dd><p>node_name (str, required): The node that the server is running into atena02.</p>
+<p>username (str, required): The username required to make the login into the server.</p>
+<p>password (str, required): The password required to make the login into the server.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Server_connection.login">
+<span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Server_connection.login"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Server_connection.login" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Summary:</dt><dd><p>Make the request.post to perfome the login.</p>
+</dd>
+<dt>Args:</dt><dd><p>None</p>
+</dd>
+<dt>Returns:</dt><dd><p>Request response</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Submitter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biganchoring_ml_module.submitter.</span></span><span class="sig-name descname"><span class="pre">Submitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'test_data.zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'test_processor.zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runner_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atena02'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_experiment'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow</span> <span class="pre">run</span> <span class="pre">measurements_regression_training_right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_account'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Submitter"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Submitter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Submitter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'test_data.zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'test_processor.zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runner_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atena02'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_experiment'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow</span> <span class="pre">run</span> <span class="pre">measurements_regression_training_right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_account'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Submitter.__init__"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Submitter.__init__" title="Link to this definition"></a></dt>
+<dd><dl>
+<dt>Summary:</dt><dd><p>Initializes the Submiter class with various parameters and optional model parameters.</p>
+</dd>
+<dt>Args:</dt><dd><p>dataset_name (str, required): The name of the dataset. Default is None.</p>
+<p>dataset_file (str, required): The name of the dataset file. Default is «test_data.zip».</p>
+<p>processor_file (str, required): The name of the processor file. Default is «test_processor.zip».</p>
+<p>runner_location (str, required): The location of the runner. Default is «atena02».</p>
+<p>execution_mode (str, required): The execution mode («mlflow» or «no-mlflow»). Default is «mlflow».</p>
+<p>experiment_name (str, required): The name of the experiment. Default is «default_experiment».</p>
+<p>execution_command (str, required): The command that the user want to execute. Default is «mlflow run measurements_regression_training_right».</p>
+<p>instance_type (str, required): The type of instance to use. Default is «gpu».</p>
+<p>account (str, required): The account to use. Default is «default_account».</p>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>model_params: Additional model parameters as keyword arguments. These will be stored as model_params.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Submitter.submit_task">
+<span class="sig-name descname"><span class="pre">submit_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Submitter.submit_task"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Submitter.submit_task" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Summary:</dt><dd><p>Perform the steps to make a submission of a task.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response of the submission request</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="historico.html" class="btn btn-neutral float-left" title="O projeto Big Anchoring" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="example.html" class="btn btn-neutral float-right" title="Exemplos de Uso" accesskey="n" rel="next">Seguinte <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, ICA.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

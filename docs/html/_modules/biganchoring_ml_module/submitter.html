@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>biganchoring_ml_module.submitter &mdash; Documentação Big Anchoring Machine Learning Module alpha_01</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=f6f34462"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/translations.js?v=5f54a428"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Pesquisar" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Big Anchoring Machine Learning Module
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar docs" aria-label="Pesquisar docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">BigAnchoringMachieLearningModule</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Big Anchoring Machine Learning Module</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Código do módulo</a></li>
+      <li class="breadcrumb-item active">biganchoring_ml_module.submitter</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fonte de biganchoring_ml_module.submitter</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<div class="viewcode-block" id="Server_connection">
+<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Server_connection">[documentos]</a>
+<span class="k">class</span> <span class="nc">Server_connection</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Server_connection foi desenvolvido para facilitar os processos de conexões. </span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+<div class="viewcode-block" id="Server_connection.__init__">
+<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Server_connection.__init__">[documentos]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span> <span class="o">=</span> <span class="s2">&quot;atn1b01n28&quot;</span><span class="p">,</span> <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;admin123&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;8008&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Summary:</span>
+<span class="sd">            Initializes the Server_connection class with the required arguments.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node_name (str, required): The node that the server is running into atena02.</span>
+
+<span class="sd">            username (str, required): The username required to make the login into the server.</span>
+
+<span class="sd">            password (str, required): The password required to make the login into the server.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_name</span> <span class="o">=</span> <span class="n">node_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span></div>
+
+
+<div class="viewcode-block" id="Server_connection.login">
+<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Server_connection.login">[documentos]</a>
+    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Summary:</span>
+<span class="sd">                Make the request.post to perfome the login.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                None</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                Request response</span>
+
+<span class="sd">            &#39;&#39;&#39;</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">/auth/login&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span><span class="p">}</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">}</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span><span class="mi">200</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Problem into the server login!&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">response</span></div>
+</div>
+
+
+<div class="viewcode-block" id="Submitter">
+<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Submitter">[documentos]</a>
+<span class="k">class</span> <span class="nc">Submitter</span><span class="p">:</span>
+<div class="viewcode-block" id="Submitter.__init__">
+<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Submitter.__init__">[documentos]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dataset_file</span> <span class="o">=</span><span class="s2">&quot;test_data.zip&quot;</span><span class="p">,</span> <span class="n">processor_file</span> <span class="o">=</span> <span class="s2">&quot;test_processor.zip&quot;</span><span class="p">,</span>\
+                 <span class="n">runner_location</span><span class="o">=</span><span class="s2">&quot;atena02&quot;</span><span class="p">,</span> <span class="n">execution_mode</span><span class="o">=</span><span class="s2">&quot;mlflow&quot;</span><span class="p">,</span> <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;default_experiment&quot;</span><span class="p">,</span>\
+                 <span class="n">execution_command</span><span class="o">=</span><span class="s2">&quot;mlflow run measurements_regression_training_right&quot;</span><span class="p">,</span>\
+                 <span class="n">instance_type</span><span class="o">=</span><span class="s2">&quot;gpu&quot;</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="s2">&quot;default_account&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">model_params</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Summary:</span>
+<span class="sd">            Initializes the Submiter class with various parameters and optional model parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dataset_name (str, required): The name of the dataset. Default is None.</span>
+
+<span class="sd">            dataset_file (str, required): The name of the dataset file. Default is &quot;test_data.zip&quot;.</span>
+
+<span class="sd">            processor_file (str, required): The name of the processor file. Default is &quot;test_processor.zip&quot;.</span>
+
+<span class="sd">            runner_location (str, required): The location of the runner. Default is &quot;atena02&quot;.</span>
+
+<span class="sd">            execution_mode (str, required): The execution mode (&quot;mlflow&quot; or &quot;no-mlflow&quot;). Default is &quot;mlflow&quot;.</span>
+
+<span class="sd">            experiment_name (str, required): The name of the experiment. Default is &quot;default_experiment&quot;.</span>
+
+<span class="sd">            execution_command (str, required): The command that the user want to execute. Default is &quot;mlflow run measurements_regression_training_right&quot;.</span>
+
+<span class="sd">            instance_type (str, required): The type of instance to use. Default is &quot;gpu&quot;.</span>
+
+<span class="sd">            account (str, required): The account to use. Default is &quot;default_account&quot;.</span>
+<span class="sd">            </span>
+<span class="sd">            **model_params: Additional model parameters as keyword arguments. These will be stored as model_params.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span> <span class="o">=</span> <span class="n">dataset_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset_file</span> <span class="o">=</span> <span class="n">dataset_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processor_file</span> <span class="o">=</span> <span class="n">processor_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runner_location</span> <span class="o">=</span> <span class="n">runner_location</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execution_mode</span> <span class="o">=</span> <span class="n">execution_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span> <span class="o">=</span> <span class="n">experiment_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execution_command</span> <span class="o">=</span> <span class="n">execution_command</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance_type</span> <span class="o">=</span> <span class="n">instance_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">account</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_path</span> <span class="o">=</span> <span class="s2">&quot;configured_json_by_inputs.json&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracking_uri</span> <span class="o">=</span> <span class="s2">&quot;http://npab1420.petrobras.biz:5000/&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_image</span> <span class="o">=</span> <span class="s2">&quot;teste_sif_py310_miniforge3&quot;</span>
+
+        <span class="c1"># Initialize model_params as None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_params</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">model_params</span><span class="p">:</span>
+            <span class="c1"># Initialize model_params with provided kwargs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_params</span> <span class="o">=</span> <span class="n">model_params</span></div>
+
+
+    
+    <span class="k">def</span> <span class="nf">_validate_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Summary:</span>
+<span class="sd">            Validates the inputs provided to the Submiter class.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If any required input is missing or invalid.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">:</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;dataset_name is required.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_file</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_file</span><span class="p">:</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;dataset_file is required and must be a non-empty string.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processor_file</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">processor_file</span><span class="p">:</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;processor_file is required and must be a non-empty string.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">runner_location</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">runner_location</span><span class="p">:</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;runner_location is required and must be a non-empty string.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">execution_mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;mlflow&quot;</span><span class="p">,</span> <span class="s2">&quot;no-mlflow&quot;</span><span class="p">]:</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;execution_mode must be &#39;mlflow&#39; or &#39;no-mlflow&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span><span class="p">:</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;experiment_name is required.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">execution_command</span><span class="p">:</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;execution_command is required.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance_type</span><span class="p">:</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;instance_type is required.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">account</span><span class="p">:</span>
+            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;account is required.&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input validation failed: &quot;</span> <span class="o">+</span> <span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">errors</span><span class="p">))</span>
+        
+
+
+    <span class="k">def</span> <span class="nf">_create_configuration_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Summary:</span>
+<span class="sd">            Creates a dict configuration dictionary using the stored parameters and validated inputs.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If validation fails for any of the inputs.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The dict configuration as a string.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_inputs</span><span class="p">()</span>
+        
+        <span class="c1"># Initialize model_params as an empty dictionary if None</span>
+        <span class="n">model_params_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_params</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
+
+        <span class="c1"># Construct the configuration dictionary</span>
+        <span class="n">config_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;dataset_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">,</span>
+            <span class="s2">&quot;dataset_file&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_file</span><span class="p">,</span>
+            <span class="s2">&quot;processor_file&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">processor_file</span><span class="p">,</span>
+            <span class="s2">&quot;model_params&quot;</span><span class="p">:</span> <span class="n">model_params_dict</span><span class="p">,</span>
+            <span class="s2">&quot;runner_location&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">runner_location</span><span class="p">,</span>
+            <span class="s2">&quot;execution_mode&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">execution_mode</span><span class="p">,</span>
+            <span class="s2">&quot;experiment_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment_name</span><span class="p">,</span>
+            <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">execution_command</span><span class="p">,</span>
+            <span class="s2">&quot;clusters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">runner_location</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;infra_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;instance_type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance_type</span><span class="p">,</span>
+                        <span class="s2">&quot;image_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_image</span><span class="p">,</span>
+                        <span class="s2">&quot;account&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">account</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;backend_execution&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;mlflow&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;execution_config&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;execution_mode&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">execution_mode</span><span class="p">,</span>
+                        <span class="s2">&quot;tracking_uri&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracking_uri</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;no-mlflow&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;execution_config&quot;</span><span class="p">:</span> <span class="p">{}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">config_dict</span>
+
+    <span class="k">def</span> <span class="nf">_prepare_json_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Summary:</span>
+<span class="sd">            Prepare the json and handle in memory to be used into the task submission proccess.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If validation of configuration_dict fails due to the type.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            _io.StringIO: json_file in memory.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">configuration_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_configuration_dict</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">configuration_dict</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">dict</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Problem com a geração do json!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">json_file</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">configuration_dict</span><span class="p">,</span> <span class="n">json_file</span><span class="p">)</span>
+            <span class="n">json_file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">json_file</span>
+
+<div class="viewcode-block" id="Submitter.submit_task">
+<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Submitter.submit_task">[documentos]</a>
+    <span class="k">def</span> <span class="nf">submit_task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Summary:</span>
+<span class="sd">            Perform the steps to make a submission of a task.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Response of the submission request</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">node_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;NODE_NAME&#39;</span><span class="p">)</span><span class="c1">#&quot;atn1b05n26&quot;</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;USER_NAME_AUTH&#39;</span><span class="p">)</span><span class="c1">#&#39;admin&#39;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;PASSWORD_AUTH&#39;</span><span class="p">)</span><span class="c1">#&#39;admin123&#39;</span>
+        <span class="n">port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;PORT&#39;</span><span class="p">)</span><span class="c1">#&#39;8008&#39;</span>
+
+        <span class="n">connection</span> <span class="o">=</span> <span class="n">Server_connection</span><span class="p">(</span><span class="n">node_name</span><span class="p">,</span><span class="n">username</span><span class="p">,</span><span class="n">password</span><span class="p">,</span><span class="n">port</span><span class="p">)</span>
+        <span class="n">connection_response</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+        <span class="n">auth</span> <span class="o">=</span> <span class="n">connection_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>      
+
+        <span class="n">json_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_json_file</span><span class="p">()</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">/new_task&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">node_name</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">auth</span><span class="p">[</span><span class="s1">&#39;token_type&#39;</span><span class="p">],</span> <span class="n">auth</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">])}</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;files&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;submiter_confs_mlflow.json&quot;</span><span class="p">,</span> <span class="n">json_file</span><span class="p">,</span> <span class="s1">&#39;application/json&#39;</span><span class="p">))]</span>
+        <span class="n">submission_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+        
+        <span class="c1"># print(&quot;submission_response.text:&quot;, submission_response.text)</span>
+
+        <span class="c1"># Implement additional logic for task submission if needed</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Task submitted.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">submission_response</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, ICA.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
