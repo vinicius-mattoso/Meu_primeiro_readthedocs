@@ -1,2 +1,4 @@
 pandas
 numpy
+sphinx
+sphinx_rtd_theme
