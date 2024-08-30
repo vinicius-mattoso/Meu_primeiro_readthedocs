@@ -14,11 +14,11 @@ class TaskHandler:
         self.connection = Server_connection(self.node_name, self.username, self.password, self.port)
     
     def cancel_task(self):
-        """
-        Cancels the task with the given task_id.
-        """
+        '''
+        Cancela a tarefa com o task_id fornecido.
+        '''
         # Placeholder for logic to cancel a task
-        print("Task {} has been canceled.".format(self.task_id))   
+        print("A tarefa {} foi cancelada.".format(self.task_id))   
 
         # Establish connection to the server
         connection_response = self.connection.login()
@@ -36,33 +36,31 @@ class TaskHandler:
 
         # Handle the response
         if response.status_code == 200:
-            print("Status obtido com sucesso!")
+            print("Tarefa cancelada com sucesso!")
         else:
-            print("Erro ao cancelar o job:", response.status_code, response.text)
-            raise ValueError("Failed to cancel the job: {}".format(response.status_code))
+            print("Erro ao cancelar a tarefa:", response.status_code, response.text)
+            raise ValueError("Falha ao cancelar a tarefa: {}".format(response.status_code))
 
         return response
         
 
-    def get_job_status(self):
+    def get_task_status(self):
         '''
-        Summary:
-            Retrieves the status of a job from the API using the job ID. 
-            The function connects to the server using authentication credentials 
-            stored in environment variables, sends a GET request to retrieve the 
-            job status, and returns the API response.
+        Resumo:
+            Recupera o status de um task da API usando o ID da task.
+            A função conecta-se ao servidor utilizando credenciais de autenticação
+            armazenadas em variáveis de ambiente, envia uma solicitação GET para recuperar 
+            o status da task e retorna a resposta da API.
 
-        Args:
-            task_id (int): The unique identifier for the job whose status is to be retrieved.
+        Exceções:
+            ValueError: Se a resposta da API indicar uma falha na recuperação do status da task, 
+            como um código de status inesperado.
 
-        Raises:
-            ValueError: If the API response indicates a failure to retrieve the job status, such as an unexpected status code.
-
-        Returns:
-            requests.models.Response: The HTTP response object containing the job status information.
+        Retorna:
+            requests.models.Response: O objeto de resposta HTTP contendo as informações do status da task.
         '''
         # Placeholder for logic to get task information
-        print("Getting information for the task_id ID: {}.".format(self.task_id))
+        print("Obtendo informações para o ID task_id: {}.".format(self.task_id))
 
         # Establish connection to the server
         connection_response = self.connection.login()
@@ -82,30 +80,28 @@ class TaskHandler:
         if response.status_code == 200:
             print("Status obtido com sucesso!")
         else:
-            print("Erro ao obter o status do job:", response.status_code, response.text)
-            raise ValueError("Failed to retrieve job status: {}".format(response.status_code))
+            print("Erro ao obter o status da task:", response.status_code, response.text)
+            raise ValueError("Falha ao recuperar o status da task: {}".format(response.status_code))
 
         return response
     
-    def get_job_run_id(self):
+    def get_task_run_id(self):
         '''
-        Summary:
-            Retrieves the status of a job from the API using the job ID. 
-            The function connects to the server using authentication credentials 
-            stored in environment variables, sends a GET request to retrieve the 
-            run id from the MLFLOW, and returns the API response.
+        Resumo:
+            Recupera o ID de execução de uma tarefa (task) da API usando o task ID.
+            A função conecta-se ao servidor utilizando credenciais de autenticação
+            armazenadas em variáveis de ambiente, envia uma solicitação GET para recuperar
+            o ID de execução a partir do MLFLOW e retorna a resposta da API.
 
-        Args:
-            task_id (int): The unique identifier for the job whose status is to be retrieved.
+        Exceções:
+            ValueError: Se a resposta da API indicar uma falha na recuperação do ID de execução da tarefa,
+            como um código de status inesperado.
 
-        Raises:
-            ValueError: If the API response indicates a failure to retrieve the job status, such as an unexpected status code.
-
-        Returns:
-            requests.models.Response: The HTTP response object containing the job status information.
+        Retorna:
+            requests.models.Response: O objeto de resposta HTTP contendo as informações do ID de execução da tarefa.
         '''
         # Placeholder for logic to get task information
-        print("Getting information for the task_id ID: {}.".format(self.task_id))
+        print("Obtendo informações para o ID task_id: {}.".format(self.task_id))
 
         # Establish connection to the server
         connection_response = self.connection.login()
@@ -125,8 +121,8 @@ class TaskHandler:
         if response.status_code == 200:
             print("Status obtido com sucesso!")
         else:
-            print("Erro ao obter o run id do job:", response.status_code, response.text)
-            raise ValueError("Failed to retrieve job run id: {}".format(response.status_code))
+            print("Erro ao obter o ID de execução da tarefa:", response.status_code, response.text)
+            raise ValueError("Falha ao recuperar o ID de execução da tarefa: {}".format(response.status_code))
 
         return response
 

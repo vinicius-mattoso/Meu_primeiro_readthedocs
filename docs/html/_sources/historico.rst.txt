@@ -31,21 +31,30 @@ processamento em diferentes infraestruturas (cloud e on-premises), e a visualiza
 
    <br><br>
 
-Módulo de Gerenciamento de Dados Críticos
+Big Anchoring Domain Module
 ---------------------------------------------
 
-Esse módulo apresenta uma plataforma Big Data e sistemas distribuídos, otimizada para o eficiente tratamento
-de grandes volumes de dados em sistemas críticos, como a ancoragem de FPSOs,
-utilizando datalakes e ecossistema Kafka.
+Este módulo apresenta uma plataforma avançada de Big Data e sistemas distribuídos, 
+projetada para o tratamento eficiente de grandes volumes de dados em ambientes críticos, 
+como a ancoragem de FPSOs, utilizando datalakes e o ecossistema Kafka.
+
+.. image:: _static/images/BA-Domain-Module.png
+   :alt: Descrição alternativa da imagem
+   :width: 60%
+   :align: center
+
+.. raw:: html
+
+   <br><br>
 
 
 **Eficiência no Gerenciamento de Dados Críticos**
 
-Esse módulo do Big Anchoring é uma inovadora plataforma baseada em Big Data e sistemas distribuídos, 
-dedicada ao gerenciamento eficiente de grandes volumes de dados em sistemas críticos, como a ancoragem de FPSOs.
-Com uma arquitetura escalável de sistemas distribuídos, destaca-se por sua capacidade de criar datalakes organizados
-para armazenamento e manipulação de dados estruturados e não-estruturados. Essa solução é essencial para o controle
-eficaz de informações vitais em ambientes de produção de óleo e gás offshore.
+O Big Anchoring Domain Module é uma plataforma inovadora baseada em Big Data, 
+criada para gerenciar de forma eficiente grandes volumes de dados em sistemas críticos, 
+como a ancoragem de FPSOs. Com uma arquitetura escalável, a solução organiza datalakes para armazenamento 
+e manipulação de dados estruturados e não estruturados, essencial para o controle de informações vitais 
+em operações offshore de óleo e gás.
 
 Big Anchoring Machine learning Module
 --------------------------------------------------
@@ -67,6 +76,11 @@ por meio de recursos em nuvem (cloud), oferecendo a flexibilidade e escalabilida
 O módulo **Big Anchoring Machine Learning** oferece um serviço que facilita a utilização de diferentes infraestruturas, sejam elas clusters on-premises ou estruturas em nuvem.
 Com ele, os usuários podem submeter tarefas, quando autorizados, tanto para a estrutura HPC da Petrobras (atena02) quanto para as infraestruturas da Amazon (AWS) e da Microsoft (Azure),
 proporcionando escalabilidade e acesso a grande poder computacional.
+
+.. image:: _static/images/BA-ML-Module.png
+   :alt: Descrição alternativa da imagem
+   :width: 60%
+   :align: center
 
 A forma escolhida para permitir que o usuário acesse o serviço do **Big Anchoring Machine Learning Module** é por meio de uma biblioteca Python.
 Essa biblioteca facilita a utilização dos serviços, permitindo que sejam acessados de maneira semelhante à chamada de funções em Python,

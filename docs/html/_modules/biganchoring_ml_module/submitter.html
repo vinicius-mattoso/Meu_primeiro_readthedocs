@@ -78,92 +78,39 @@
 <span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<div class="viewcode-block" id="Server_connection">
-<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Server_connection">[documentos]</a>
-<span class="k">class</span> <span class="nc">Server_connection</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Server_connection foi desenvolvido para facilitar os processos de conexões. </span>
-
-<span class="sd">    &#39;&#39;&#39;</span>
-<div class="viewcode-block" id="Server_connection.__init__">
-<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Server_connection.__init__">[documentos]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span> <span class="o">=</span> <span class="s2">&quot;atn1b01n28&quot;</span><span class="p">,</span> <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;admin123&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;8008&#39;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Summary:</span>
-<span class="sd">            Initializes the Server_connection class with the required arguments.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            node_name (str, required): The node that the server is running into atena02.</span>
-
-<span class="sd">            username (str, required): The username required to make the login into the server.</span>
-
-<span class="sd">            password (str, required): The password required to make the login into the server.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">node_name</span> <span class="o">=</span> <span class="n">node_name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span></div>
-
-
-<div class="viewcode-block" id="Server_connection.login">
-<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Server_connection.login">[documentos]</a>
-    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">            </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">            Summary:</span>
-<span class="sd">                Make the request.post to perfome the login.</span>
-
-<span class="sd">            Args:</span>
-<span class="sd">                None</span>
-
-<span class="sd">            Returns:</span>
-<span class="sd">                Request response</span>
-
-<span class="sd">            &#39;&#39;&#39;</span>
-            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">/auth/login&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
-            <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span><span class="p">}</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">}</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span><span class="mi">200</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Problem into the server login!&quot;</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">response</span></div>
-</div>
-
-
 <div class="viewcode-block" id="Submitter">
 <a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Submitter">[documentos]</a>
 <span class="k">class</span> <span class="nc">Submitter</span><span class="p">:</span>
 <div class="viewcode-block" id="Submitter.__init__">
 <a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Submitter.__init__">[documentos]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dataset_file</span> <span class="o">=</span><span class="s2">&quot;test_data.zip&quot;</span><span class="p">,</span> <span class="n">processor_file</span> <span class="o">=</span> <span class="s2">&quot;test_processor.zip&quot;</span><span class="p">,</span>\
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dataset_file</span> <span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processor_file</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>\
                  <span class="n">runner_location</span><span class="o">=</span><span class="s2">&quot;atena02&quot;</span><span class="p">,</span> <span class="n">execution_mode</span><span class="o">=</span><span class="s2">&quot;mlflow&quot;</span><span class="p">,</span> <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;default_experiment&quot;</span><span class="p">,</span>\
-                 <span class="n">execution_command</span><span class="o">=</span><span class="s2">&quot;mlflow run measurements_regression_training_right&quot;</span><span class="p">,</span>\
+                 <span class="n">execution_command</span><span class="o">=</span><span class="s2">&quot;mlflow run project&quot;</span><span class="p">,</span>\
                  <span class="n">instance_type</span><span class="o">=</span><span class="s2">&quot;gpu&quot;</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="s2">&quot;default_account&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">model_params</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Summary:</span>
-<span class="sd">            Initializes the Submiter class with various parameters and optional model parameters.</span>
+<span class="sd">        Resumo:</span>
+<span class="sd">            Inicializa a classe Submiter com vários parâmetros e parâmetros opcionais de modelo.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            dataset_name (str, required): The name of the dataset. Default is None.</span>
+<span class="sd">        Parâmetros:</span>
+<span class="sd">            dataset_name (str, obrigatório): O nome do dataset. Padrão é None.</span>
 
-<span class="sd">            dataset_file (str, required): The name of the dataset file. Default is &quot;test_data.zip&quot;.</span>
+<span class="sd">            dataset_file (str, obrigatório): O nome do arquivo do dataset. Padrão é None.</span>
 
-<span class="sd">            processor_file (str, required): The name of the processor file. Default is &quot;test_processor.zip&quot;.</span>
+<span class="sd">            processor_file (str, obrigatório): O nome do arquivo do processador. Padrão é None.</span>
 
-<span class="sd">            runner_location (str, required): The location of the runner. Default is &quot;atena02&quot;.</span>
+<span class="sd">            runner_location (str, obrigatório): A localização do runner. Padrão é None.</span>
 
-<span class="sd">            execution_mode (str, required): The execution mode (&quot;mlflow&quot; or &quot;no-mlflow&quot;). Default is &quot;mlflow&quot;.</span>
+<span class="sd">            execution_mode (str, obrigatório): O modo de execução (&quot;mlflow&quot; ou &quot;no-mlflow&quot;). Padrão é &quot;mlflow&quot;.</span>
 
-<span class="sd">            experiment_name (str, required): The name of the experiment. Default is &quot;default_experiment&quot;.</span>
+<span class="sd">            experiment_name (str, obrigatório): O nome do experimento. Padrão é &quot;default_experiment&quot;.</span>
 
-<span class="sd">            execution_command (str, required): The command that the user want to execute. Default is &quot;mlflow run measurements_regression_training_right&quot;.</span>
+<span class="sd">            execution_command (str, obrigatório): O comando que o usuário deseja executar. Padrão é &quot;mlflow run project&quot;.</span>
 
-<span class="sd">            instance_type (str, required): The type of instance to use. Default is &quot;gpu&quot;.</span>
+<span class="sd">            instance_type (str, obrigatório): O tipo de instância a ser utilizada. Padrão é &quot;gpu&quot;.</span>
 
-<span class="sd">            account (str, required): The account to use. Default is &quot;default_account&quot;.</span>
+<span class="sd">            account (str, obrigatório): A conta a ser utilizada. Padrão é &quot;default_account&quot;.</span>
 <span class="sd">            </span>
-<span class="sd">            **model_params: Additional model parameters as keyword arguments. These will be stored as model_params.</span>
+<span class="sd">            **model_params: Parâmetros adicionais do modelo como argumentos de palavra-chave. Estes serão armazenados como model_params.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span> <span class="o">=</span> <span class="n">dataset_name</span>
@@ -189,13 +136,13 @@
     
     <span class="k">def</span> <span class="nf">_validate_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Summary:</span>
-<span class="sd">            Validates the inputs provided to the Submiter class.</span>
+<span class="sd">        Resumo:</span>
+<span class="sd">            Valida as entradas fornecidas para a classe Submiter.</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: If any required input is missing or invalid.</span>
+<span class="sd">        Exceções:</span>
+<span class="sd">            ValueError: Se qualquer entrada obrigatória estiver ausente ou for inválida.</span>
 
-<span class="sd">        Returns:</span>
+<span class="sd">        Retorna:</span>
 <span class="sd">            None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
@@ -226,14 +173,14 @@
 
     <span class="k">def</span> <span class="nf">_create_configuration_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Summary:</span>
-<span class="sd">            Creates a dict configuration dictionary using the stored parameters and validated inputs.</span>
+<span class="sd">        Resumo:</span>
+<span class="sd">            Cria um dicionário de configuração usando os parâmetros armazenados e as entradas validadas.</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: If validation fails for any of the inputs.</span>
+<span class="sd">        Exceções:</span>
+<span class="sd">            ValueError: Se a validação falhar para qualquer uma das entradas.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            str: The dict configuration as a string.</span>
+<span class="sd">        Retorna:</span>
+<span class="sd">            str: O dicionário de configuração como uma string.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_inputs</span><span class="p">()</span>
         
@@ -275,18 +222,18 @@
 
     <span class="k">def</span> <span class="nf">_prepare_json_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Summary:</span>
-<span class="sd">            Prepare the json and handle in memory to be used into the task submission proccess.</span>
+<span class="sd">        Resumo:</span>
+<span class="sd">            Prepara o JSON e o armazena na memória para ser utilizado no processo de submissão da tarefa.</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: If validation of configuration_dict fails due to the type.</span>
+<span class="sd">        Exceções:</span>
+<span class="sd">            ValueError: Se a validação de configuration_dict falhar devido ao tipo.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            _io.StringIO: json_file in memory.</span>
+<span class="sd">        Retorna:</span>
+<span class="sd">            _io.StringIO: json_file na memória.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">configuration_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_configuration_dict</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">configuration_dict</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">dict</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Problem com a geração do json!&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Problema com a geração do json!&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">json_file</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">configuration_dict</span><span class="p">,</span> <span class="n">json_file</span><span class="p">)</span>
@@ -297,11 +244,11 @@
 <a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Submitter.submit_task">[documentos]</a>
     <span class="k">def</span> <span class="nf">submit_task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Summary:</span>
-<span class="sd">            Perform the steps to make a submission of a task.</span>
+<span class="sd">        Resumo:</span>
+<span class="sd">            Realiza os passos necessários para fazer a submissão de uma tarefa.</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            Response of the submission request</span>
+<span class="sd">        Retorna:</span>
+<span class="sd">            Resposta da solicitação de submissão.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">node_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;NODE_NAME&#39;</span><span class="p">)</span><span class="c1">#&quot;atn1b05n26&quot;</span>
         <span class="n">username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;USER_NAME_AUTH&#39;</span><span class="p">)</span><span class="c1">#&#39;admin&#39;</span>
@@ -320,12 +267,62 @@
         <span class="n">files</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;files&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;submiter_confs_mlflow.json&quot;</span><span class="p">,</span> <span class="n">json_file</span><span class="p">,</span> <span class="s1">&#39;application/json&#39;</span><span class="p">))]</span>
         <span class="n">submission_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
         
-        <span class="c1"># print(&quot;submission_response.text:&quot;, submission_response.text)</span>
-
-        <span class="c1"># Implement additional logic for task submission if needed</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Task submitted.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Task submetida.&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">submission_response</span></div>
+</div>
+
+    
+<div class="viewcode-block" id="Server_connection">
+<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Server_connection">[documentos]</a>
+<span class="k">class</span> <span class="nc">Server_connection</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Server_connection foi desenvolvido para facilitar os processos de conexões.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+<div class="viewcode-block" id="Server_connection.__init__">
+<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Server_connection.__init__">[documentos]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_name</span> <span class="o">=</span> <span class="s2">&quot;atn1b01n28&quot;</span><span class="p">,</span> <span class="n">username</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Resumo:</span>
+<span class="sd">            Inicializa a classe Server_connection com os argumentos necessários.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">            node_name (str, obrigatório): O nó onde o servidor está rodando em atena02.</span>
+
+<span class="sd">            username (str, obrigatório): O nome de usuário necessário para fazer login no servidor.</span>
+
+<span class="sd">            password (str, obrigatório): A senha necessária para fazer login no servidor.</span>
+
+<span class="sd">            port (str, obrigatório): A porta necessária para fazer login no servidor.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_name</span> <span class="o">=</span> <span class="n">node_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span></div>
+
+
+<div class="viewcode-block" id="Server_connection.login">
+<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Server_connection.login">[documentos]</a>
+    <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Resumo:</span>
+<span class="sd">                Realiza a solicitação `POST` para efetuar o login.</span>
+
+<span class="sd">            Parâmetros:</span>
+<span class="sd">                Nenhum</span>
+
+<span class="sd">            Retorna:</span>
+<span class="sd">                Resposta da solicitação de login.</span>
+<span class="sd">            &#39;&#39;&#39;</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">/auth/login&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span><span class="p">}</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">}</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span><span class="mi">200</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Problema no login junto ao servidor!&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">response</span></div>
 </div>
 
 </pre></div>

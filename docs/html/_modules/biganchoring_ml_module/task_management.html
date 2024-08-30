@@ -95,11 +95,11 @@
 <div class="viewcode-block" id="TaskHandler.cancel_task">
 <a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.task_management.TaskHandler.cancel_task">[documentos]</a>
     <span class="k">def</span> <span class="nf">cancel_task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Cancels the task with the given task_id.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Cancela a tarefa com o task_id fornecido.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1"># Placeholder for logic to cancel a task</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Task </span><span class="si">{}</span><span class="s2"> has been canceled.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_id</span><span class="p">))</span>   
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A tarefa </span><span class="si">{}</span><span class="s2"> foi cancelada.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_id</span><span class="p">))</span>   
 
         <span class="c1"># Establish connection to the server</span>
         <span class="n">connection_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
@@ -117,36 +117,34 @@
 
         <span class="c1"># Handle the response</span>
         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Status obtido com sucesso!&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tarefa cancelada com sucesso!&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro ao cancelar o job:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Failed to cancel the job: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro ao cancelar a tarefa:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Falha ao cancelar a tarefa: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">response</span></div>
 
         
 
-<div class="viewcode-block" id="TaskHandler.get_job_status">
-<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.task_management.TaskHandler.get_job_status">[documentos]</a>
-    <span class="k">def</span> <span class="nf">get_job_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TaskHandler.get_task_status">
+<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.task_management.TaskHandler.get_task_status">[documentos]</a>
+    <span class="k">def</span> <span class="nf">get_task_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Summary:</span>
-<span class="sd">            Retrieves the status of a job from the API using the job ID. </span>
-<span class="sd">            The function connects to the server using authentication credentials </span>
-<span class="sd">            stored in environment variables, sends a GET request to retrieve the </span>
-<span class="sd">            job status, and returns the API response.</span>
+<span class="sd">        Resumo:</span>
+<span class="sd">            Recupera o status de um task da API usando o ID da task.</span>
+<span class="sd">            A função conecta-se ao servidor utilizando credenciais de autenticação</span>
+<span class="sd">            armazenadas em variáveis de ambiente, envia uma solicitação GET para recuperar </span>
+<span class="sd">            o status da task e retorna a resposta da API.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            task_id (int): The unique identifier for the job whose status is to be retrieved.</span>
+<span class="sd">        Exceções:</span>
+<span class="sd">            ValueError: Se a resposta da API indicar uma falha na recuperação do status da task, </span>
+<span class="sd">            como um código de status inesperado.</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: If the API response indicates a failure to retrieve the job status, such as an unexpected status code.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            requests.models.Response: The HTTP response object containing the job status information.</span>
+<span class="sd">        Retorna:</span>
+<span class="sd">            requests.models.Response: O objeto de resposta HTTP contendo as informações do status da task.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1"># Placeholder for logic to get task information</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting information for the task_id ID: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_id</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Obtendo informações para o ID task_id: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_id</span><span class="p">))</span>
 
         <span class="c1"># Establish connection to the server</span>
         <span class="n">connection_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
@@ -166,33 +164,31 @@
         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Status obtido com sucesso!&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro ao obter o status do job:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Failed to retrieve job status: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro ao obter o status da task:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Falha ao recuperar o status da task: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">response</span></div>
 
     
-<div class="viewcode-block" id="TaskHandler.get_job_run_id">
-<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.task_management.TaskHandler.get_job_run_id">[documentos]</a>
-    <span class="k">def</span> <span class="nf">get_job_run_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TaskHandler.get_task_run_id">
+<a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.task_management.TaskHandler.get_task_run_id">[documentos]</a>
+    <span class="k">def</span> <span class="nf">get_task_run_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Summary:</span>
-<span class="sd">            Retrieves the status of a job from the API using the job ID. </span>
-<span class="sd">            The function connects to the server using authentication credentials </span>
-<span class="sd">            stored in environment variables, sends a GET request to retrieve the </span>
-<span class="sd">            run id from the MLFLOW, and returns the API response.</span>
+<span class="sd">        Resumo:</span>
+<span class="sd">            Recupera o ID de execução de uma tarefa (task) da API usando o task ID.</span>
+<span class="sd">            A função conecta-se ao servidor utilizando credenciais de autenticação</span>
+<span class="sd">            armazenadas em variáveis de ambiente, envia uma solicitação GET para recuperar</span>
+<span class="sd">            o ID de execução a partir do MLFLOW e retorna a resposta da API.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            task_id (int): The unique identifier for the job whose status is to be retrieved.</span>
+<span class="sd">        Exceções:</span>
+<span class="sd">            ValueError: Se a resposta da API indicar uma falha na recuperação do ID de execução da tarefa,</span>
+<span class="sd">            como um código de status inesperado.</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: If the API response indicates a failure to retrieve the job status, such as an unexpected status code.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            requests.models.Response: The HTTP response object containing the job status information.</span>
+<span class="sd">        Retorna:</span>
+<span class="sd">            requests.models.Response: O objeto de resposta HTTP contendo as informações do ID de execução da tarefa.</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1"># Placeholder for logic to get task information</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting information for the task_id ID: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_id</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Obtendo informações para o ID task_id: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">task_id</span><span class="p">))</span>
 
         <span class="c1"># Establish connection to the server</span>
         <span class="n">connection_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
@@ -212,8 +208,8 @@
         <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Status obtido com sucesso!&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro ao obter o run id do job:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Failed to retrieve job run id: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Erro ao obter o ID de execução da tarefa:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Falha ao recuperar o ID de execução da tarefa: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">response</span></div>
 </div>

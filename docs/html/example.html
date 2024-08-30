@@ -94,8 +94,10 @@ O objetivo dessa biblioteca é simplificar o acesso aos serviços de submissão 
 oferecidas pela API do Big Anchoring Machine Learning Module. A figura abaixo ilustra de maneira simplificada como o
 serviço está atuando em relação à infraestrutura do atena02.</p>
 <a class="reference internal image-reference" href="_static/images/architecture_API.png"><img alt="Descrição alternativa da imagem" class="align-center" src="_static/images/architecture_API.png" style="width: 80%;" /></a>
-<br><br><p>Nos exemplos a seguir, vemos inicialmente como fazer a submissão de uma tarefa para dentro do cluster, a obtenção do status da task que foi previamente submetida,
-a obtenção do run_id do mlflow utilizado dentro da task, se houver,  e, na sequência, como realizar o cancelamento de tarefa submetida.</p>
+<br><br><p>Nos exemplos a seguir, vamos explorar os principais procedimentos para a gestão de tarefas dentro do cluster.
+Primeiramente, veremos como realizar a submissão de uma tarefa, seguido pelo processo de obtenção do status da
+task que foi previamente submetida. Em seguida, aprenderemos a recuperar o <em>run_id</em> do MLflow utilizado na task,
+se aplicável. Por fim, demonstraremos como cancelar uma tarefa que já foi submetida.</p>
 <section id="submissao-de-uma-task-ao-atena02">
 <h2>Submissão de uma task ao atena02<a class="headerlink" href="#submissao-de-uma-task-ao-atena02" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">biganchoring_ml_module</span> <span class="kn">import</span> <span class="n">Submitter</span>

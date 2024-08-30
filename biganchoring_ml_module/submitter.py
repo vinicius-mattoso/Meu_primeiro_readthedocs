@@ -4,79 +4,35 @@ import requests
 import io
 import os
 
-class Server_connection:
-    '''
-        Server_connection foi desenvolvido para facilitar os processos de conexões. 
-
-    '''
-    def __init__(self, node_name = "atn1b01n28", username = 'admin', password = 'admin123', port = '8008'):
-        '''
-        Summary:
-            Initializes the Server_connection class with the required arguments.
-
-        Args:
-            node_name (str, required): The node that the server is running into atena02.
-
-            username (str, required): The username required to make the login into the server.
-
-            password (str, required): The password required to make the login into the server.
-        '''
-        self.node_name = node_name
-        self.username = username
-        self.password = password
-        self.port = port
-
-    def login(self):
-            '''
-            Summary:
-                Make the request.post to perfome the login.
-
-            Args:
-                None
-
-            Returns:
-                Request response
-
-            '''
-            url = "http://{}:{}/auth/login".format(self.node_name, self.port)
-            headers = {'accept': 'application/json',
-                            'Content-Type': 'application/x-www-form-urlencoded'}
-            data = {'username': self.username, 'password': self.password}
-            response = requests.post(url, headers=headers, data=data, timeout=120)
-            if response.status_code !=200:
-                raise ValueError("Problem into the server login!")
-            else:
-                return response
-
 class Submitter:
-    def __init__(self, dataset_name=None, dataset_file ="test_data.zip", processor_file = "test_processor.zip",\
+    def __init__(self, dataset_name=None, dataset_file =None, processor_file = None,\
                  runner_location="atena02", execution_mode="mlflow", experiment_name="default_experiment",\
-                 execution_command="mlflow run measurements_regression_training_right",\
+                 execution_command="mlflow run project",\
                  instance_type="gpu", account="default_account", **model_params):
         '''
-        Summary:
-            Initializes the Submiter class with various parameters and optional model parameters.
+        Resumo:
+            Inicializa a classe Submiter com vários parâmetros e parâmetros opcionais de modelo.
 
-        Args:
-            dataset_name (str, required): The name of the dataset. Default is None.
+        Parâmetros:
+            dataset_name (str, obrigatório): O nome do dataset. Padrão é None.
 
-            dataset_file (str, required): The name of the dataset file. Default is "test_data.zip".
+            dataset_file (str, obrigatório): O nome do arquivo do dataset. Padrão é None.
 
-            processor_file (str, required): The name of the processor file. Default is "test_processor.zip".
+            processor_file (str, obrigatório): O nome do arquivo do processador. Padrão é None.
 
-            runner_location (str, required): The location of the runner. Default is "atena02".
+            runner_location (str, obrigatório): A localização do runner. Padrão é None.
 
-            execution_mode (str, required): The execution mode ("mlflow" or "no-mlflow"). Default is "mlflow".
+            execution_mode (str, obrigatório): O modo de execução ("mlflow" ou "no-mlflow"). Padrão é "mlflow".
 
-            experiment_name (str, required): The name of the experiment. Default is "default_experiment".
+            experiment_name (str, obrigatório): O nome do experimento. Padrão é "default_experiment".
 
-            execution_command (str, required): The command that the user want to execute. Default is "mlflow run measurements_regression_training_right".
+            execution_command (str, obrigatório): O comando que o usuário deseja executar. Padrão é "mlflow run project".
 
-            instance_type (str, required): The type of instance to use. Default is "gpu".
+            instance_type (str, obrigatório): O tipo de instância a ser utilizada. Padrão é "gpu".
 
-            account (str, required): The account to use. Default is "default_account".
+            account (str, obrigatório): A conta a ser utilizada. Padrão é "default_account".
             
-            **model_params: Additional model parameters as keyword arguments. These will be stored as model_params.
+            **model_params: Parâmetros adicionais do modelo como argumentos de palavra-chave. Estes serão armazenados como model_params.
         '''
         
         self.dataset_name = dataset_name
@@ -101,13 +57,13 @@ class Submitter:
     
     def _validate_inputs(self):
         '''
-        Summary:
-            Validates the inputs provided to the Submiter class.
+        Resumo:
+            Valida as entradas fornecidas para a classe Submiter.
 
-        Raises:
-            ValueError: If any required input is missing or invalid.
+        Exceções:
+            ValueError: Se qualquer entrada obrigatória estiver ausente ou for inválida.
 
-        Returns:
+        Retorna:
             None
         '''
         errors = []
@@ -138,14 +94,14 @@ class Submitter:
 
     def _create_configuration_dict(self):
         '''
-        Summary:
-            Creates a dict configuration dictionary using the stored parameters and validated inputs.
+        Resumo:
+            Cria um dicionário de configuração usando os parâmetros armazenados e as entradas validadas.
 
-        Raises:
-            ValueError: If validation fails for any of the inputs.
+        Exceções:
+            ValueError: Se a validação falhar para qualquer uma das entradas.
 
-        Returns:
-            str: The dict configuration as a string.
+        Retorna:
+            str: O dicionário de configuração como uma string.
         '''
         self._validate_inputs()
         
@@ -187,18 +143,18 @@ class Submitter:
 
     def _prepare_json_file(self):
         '''
-        Summary:
-            Prepare the json and handle in memory to be used into the task submission proccess.
+        Resumo:
+            Prepara o JSON e o armazena na memória para ser utilizado no processo de submissão da tarefa.
 
-        Raises:
-            ValueError: If validation of configuration_dict fails due to the type.
+        Exceções:
+            ValueError: Se a validação de configuration_dict falhar devido ao tipo.
 
-        Returns:
-            _io.StringIO: json_file in memory.
+        Retorna:
+            _io.StringIO: json_file na memória.
         '''
         configuration_dict = self._create_configuration_dict()
         if type(configuration_dict) != dict:
-                raise ValueError("Problem com a geração do json!")
+                raise ValueError("Problema com a geração do json!")
         else:
             json_file = io.StringIO()
             json.dump(configuration_dict, json_file)
@@ -207,11 +163,11 @@ class Submitter:
 
     def submit_task(self):
         '''
-        Summary:
-            Perform the steps to make a submission of a task.
+        Resumo:
+            Realiza os passos necessários para fazer a submissão de uma tarefa.
 
-        Returns:
-            Response of the submission request
+        Retorna:
+            Resposta da solicitação de submissão.
         '''
         node_name = os.getenv('NODE_NAME')#"atn1b05n26"
         username = os.getenv('USER_NAME_AUTH')#'admin'
@@ -230,9 +186,50 @@ class Submitter:
         files = [("files", ("submiter_confs_mlflow.json", json_file, 'application/json'))]
         submission_response = requests.post(url, headers=headers, files=files, timeout=120)
         
-        # print("submission_response.text:", submission_response.text)
-
-        # Implement additional logic for task submission if needed
-        print("Task submitted.")
+        print("Task submetida.")
 
         return submission_response
+    
+class Server_connection:
+    '''
+    Server_connection foi desenvolvido para facilitar os processos de conexões.
+    '''
+    def __init__(self, node_name = "atn1b01n28", username = None, password = None, port = None):
+        '''
+        Resumo:
+            Inicializa a classe Server_connection com os argumentos necessários.
+
+        Parâmetros:
+            node_name (str, obrigatório): O nó onde o servidor está rodando em atena02.
+
+            username (str, obrigatório): O nome de usuário necessário para fazer login no servidor.
+
+            password (str, obrigatório): A senha necessária para fazer login no servidor.
+
+            port (str, obrigatório): A porta necessária para fazer login no servidor.
+        '''
+        self.node_name = node_name
+        self.username = username
+        self.password = password
+        self.port = port
+
+    def login(self):
+            '''
+            Resumo:
+                Realiza a solicitação `POST` para efetuar o login.
+
+            Parâmetros:
+                Nenhum
+
+            Retorna:
+                Resposta da solicitação de login.
+            '''
+            url = "http://{}:{}/auth/login".format(self.node_name, self.port)
+            headers = {'accept': 'application/json',
+                            'Content-Type': 'application/x-www-form-urlencoded'}
+            data = {'username': self.username, 'password': self.password}
+            response = requests.post(url, headers=headers, data=data, timeout=120)
+            if response.status_code !=200:
+                raise ValueError("Problema no login junto ao servidor!")
+            else:
+                return response

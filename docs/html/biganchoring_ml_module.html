@@ -113,41 +113,39 @@ ao servidor, simplificando o processo de execução de tarefas no Big Anchoring 
 <dl class="py method">
 <dt class="sig sig-object py" id="biganchoring_ml_module.task_management.TaskHandler.cancel_task">
 <span class="sig-name descname"><span class="pre">cancel_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/task_management.html#TaskHandler.cancel_task"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.task_management.TaskHandler.cancel_task" title="Link to this definition"></a></dt>
-<dd><p>Cancels the task with the given task_id.</p>
+<dd><p>Cancela a tarefa com o task_id fornecido.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="biganchoring_ml_module.task_management.TaskHandler.get_job_run_id">
-<span class="sig-name descname"><span class="pre">get_job_run_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/task_management.html#TaskHandler.get_job_run_id"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.task_management.TaskHandler.get_job_run_id" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="biganchoring_ml_module.task_management.TaskHandler.get_task_run_id">
+<span class="sig-name descname"><span class="pre">get_task_run_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/task_management.html#TaskHandler.get_task_run_id"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.task_management.TaskHandler.get_task_run_id" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
-<dt>Summary:</dt><dd><p>Retrieves the status of a job from the API using the job ID. 
-The function connects to the server using authentication credentials 
-stored in environment variables, sends a GET request to retrieve the 
-run id from the MLFLOW, and returns the API response.</p>
+<dt>Resumo:</dt><dd><p>Recupera o ID de execução de uma tarefa (task) da API usando o task ID.
+A função conecta-se ao servidor utilizando credenciais de autenticação
+armazenadas em variáveis de ambiente, envia uma solicitação GET para recuperar
+o ID de execução a partir do MLFLOW e retorna a resposta da API.</p>
 </dd>
-<dt>Args:</dt><dd><p>task_id (int): The unique identifier for the job whose status is to be retrieved.</p>
+<dt>Exceções:</dt><dd><p>ValueError: Se a resposta da API indicar uma falha na recuperação do ID de execução da tarefa,
+como um código de status inesperado.</p>
 </dd>
-<dt>Raises:</dt><dd><p>ValueError: If the API response indicates a failure to retrieve the job status, such as an unexpected status code.</p>
-</dd>
-<dt>Returns:</dt><dd><p>requests.models.Response: The HTTP response object containing the job status information.</p>
+<dt>Retorna:</dt><dd><p>requests.models.Response: O objeto de resposta HTTP contendo as informações do ID de execução da tarefa.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="biganchoring_ml_module.task_management.TaskHandler.get_job_status">
-<span class="sig-name descname"><span class="pre">get_job_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/task_management.html#TaskHandler.get_job_status"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.task_management.TaskHandler.get_job_status" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="biganchoring_ml_module.task_management.TaskHandler.get_task_status">
+<span class="sig-name descname"><span class="pre">get_task_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/task_management.html#TaskHandler.get_task_status"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.task_management.TaskHandler.get_task_status" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
-<dt>Summary:</dt><dd><p>Retrieves the status of a job from the API using the job ID. 
-The function connects to the server using authentication credentials 
-stored in environment variables, sends a GET request to retrieve the 
-job status, and returns the API response.</p>
+<dt>Resumo:</dt><dd><p>Recupera o status de um task da API usando o ID da task.
+A função conecta-se ao servidor utilizando credenciais de autenticação
+armazenadas em variáveis de ambiente, envia uma solicitação GET para recuperar 
+o status da task e retorna a resposta da API.</p>
 </dd>
-<dt>Args:</dt><dd><p>task_id (int): The unique identifier for the job whose status is to be retrieved.</p>
+<dt>Exceções:</dt><dd><p>ValueError: Se a resposta da API indicar uma falha na recuperação do status da task, 
+como um código de status inesperado.</p>
 </dd>
-<dt>Raises:</dt><dd><p>ValueError: If the API response indicates a failure to retrieve the job status, such as an unexpected status code.</p>
-</dd>
-<dt>Returns:</dt><dd><p>requests.models.Response: The HTTP response object containing the job status information.</p>
+<dt>Retorna:</dt><dd><p>requests.models.Response: O objeto de resposta HTTP contendo as informações do status da task.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -159,18 +157,19 @@ job status, and returns the API response.</p>
 <span id="biganchoring-ml-module-submitter"></span><h2>biganchoring_ml_module.submitter<a class="headerlink" href="#module-biganchoring_ml_module.submitter" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Server_connection">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biganchoring_ml_module.submitter.</span></span><span class="sig-name descname"><span class="pre">Server_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atn1b01n28'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'admin'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'admin123'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'8008'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Server_connection"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Server_connection" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biganchoring_ml_module.submitter.</span></span><span class="sig-name descname"><span class="pre">Server_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atn1b01n28'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Server_connection"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Server_connection" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Server_connection foi desenvolvido para facilitar os processos de conexões.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Server_connection.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atn1b01n28'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'admin'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'admin123'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'8008'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Server_connection.__init__"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Server_connection.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atn1b01n28'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Server_connection.__init__"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Server_connection.__init__" title="Link to this definition"></a></dt>
 <dd><dl>
-<dt>Summary:</dt><dd><p>Initializes the Server_connection class with the required arguments.</p>
+<dt>Resumo:</dt><dd><p>Inicializa a classe Server_connection com os argumentos necessários.</p>
 </dd>
-<dt>Args:</dt><dd><p>node_name (str, required): The node that the server is running into atena02.</p>
-<p>username (str, required): The username required to make the login into the server.</p>
-<p>password (str, required): The password required to make the login into the server.</p>
+<dt>Parâmetros:</dt><dd><p>node_name (str, obrigatório): O nó onde o servidor está rodando em atena02.</p>
+<p>username (str, obrigatório): O nome de usuário necessário para fazer login no servidor.</p>
+<p>password (str, obrigatório): A senha necessária para fazer login no servidor.</p>
+<p>port (str, obrigatório): A porta necessária para fazer login no servidor.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -179,11 +178,11 @@ job status, and returns the API response.</p>
 <dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Server_connection.login">
 <span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Server_connection.login"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Server_connection.login" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
-<dt>Summary:</dt><dd><p>Make the request.post to perfome the login.</p>
+<dt>Resumo:</dt><dd><p>Realiza a solicitação <cite>POST</cite> para efetuar o login.</p>
 </dd>
-<dt>Args:</dt><dd><p>None</p>
+<dt>Parâmetros:</dt><dd><p>Nenhum</p>
 </dd>
-<dt>Returns:</dt><dd><p>Request response</p>
+<dt>Retorna:</dt><dd><p>Resposta da solicitação de login.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -192,24 +191,24 @@ job status, and returns the API response.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Submitter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biganchoring_ml_module.submitter.</span></span><span class="sig-name descname"><span class="pre">Submitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'test_data.zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'test_processor.zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runner_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atena02'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_experiment'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow</span> <span class="pre">run</span> <span class="pre">measurements_regression_training_right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_account'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Submitter"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Submitter" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biganchoring_ml_module.submitter.</span></span><span class="sig-name descname"><span class="pre">Submitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runner_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atena02'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_experiment'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow</span> <span class="pre">run</span> <span class="pre">project'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_account'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Submitter"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Submitter" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Submitter.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'test_data.zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'test_processor.zip'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runner_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atena02'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_experiment'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow</span> <span class="pre">run</span> <span class="pre">measurements_regression_training_right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_account'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Submitter.__init__"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Submitter.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runner_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atena02'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experiment_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_experiment'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mlflow</span> <span class="pre">run</span> <span class="pre">project'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_account'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">model_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Submitter.__init__"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Submitter.__init__" title="Link to this definition"></a></dt>
 <dd><dl>
-<dt>Summary:</dt><dd><p>Initializes the Submiter class with various parameters and optional model parameters.</p>
+<dt>Resumo:</dt><dd><p>Inicializa a classe Submiter com vários parâmetros e parâmetros opcionais de modelo.</p>
 </dd>
-<dt>Args:</dt><dd><p>dataset_name (str, required): The name of the dataset. Default is None.</p>
-<p>dataset_file (str, required): The name of the dataset file. Default is «test_data.zip».</p>
-<p>processor_file (str, required): The name of the processor file. Default is «test_processor.zip».</p>
-<p>runner_location (str, required): The location of the runner. Default is «atena02».</p>
-<p>execution_mode (str, required): The execution mode («mlflow» or «no-mlflow»). Default is «mlflow».</p>
-<p>experiment_name (str, required): The name of the experiment. Default is «default_experiment».</p>
-<p>execution_command (str, required): The command that the user want to execute. Default is «mlflow run measurements_regression_training_right».</p>
-<p>instance_type (str, required): The type of instance to use. Default is «gpu».</p>
-<p>account (str, required): The account to use. Default is «default_account».</p>
-<p><a href="#id1"><span class="problematic" id="id2">**</span></a>model_params: Additional model parameters as keyword arguments. These will be stored as model_params.</p>
+<dt>Parâmetros:</dt><dd><p>dataset_name (str, obrigatório): O nome do dataset. Padrão é None.</p>
+<p>dataset_file (str, obrigatório): O nome do arquivo do dataset. Padrão é None.</p>
+<p>processor_file (str, obrigatório): O nome do arquivo do processador. Padrão é None.</p>
+<p>runner_location (str, obrigatório): A localização do runner. Padrão é None.</p>
+<p>execution_mode (str, obrigatório): O modo de execução («mlflow» ou «no-mlflow»). Padrão é «mlflow».</p>
+<p>experiment_name (str, obrigatório): O nome do experimento. Padrão é «default_experiment».</p>
+<p>execution_command (str, obrigatório): O comando que o usuário deseja executar. Padrão é «mlflow run project».</p>
+<p>instance_type (str, obrigatório): O tipo de instância a ser utilizada. Padrão é «gpu».</p>
+<p>account (str, obrigatório): A conta a ser utilizada. Padrão é «default_account».</p>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>model_params: Parâmetros adicionais do modelo como argumentos de palavra-chave. Estes serão armazenados como model_params.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -218,9 +217,9 @@ job status, and returns the API response.</p>
 <dt class="sig sig-object py" id="biganchoring_ml_module.submitter.Submitter.submit_task">
 <span class="sig-name descname"><span class="pre">submit_task</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/biganchoring_ml_module/submitter.html#Submitter.submit_task"><span class="viewcode-link"><span class="pre">[código</span> <span class="pre">fonte]</span></span></a><a class="headerlink" href="#biganchoring_ml_module.submitter.Submitter.submit_task" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
-<dt>Summary:</dt><dd><p>Perform the steps to make a submission of a task.</p>
+<dt>Resumo:</dt><dd><p>Realiza os passos necessários para fazer a submissão de uma tarefa.</p>
 </dd>
-<dt>Returns:</dt><dd><p>Response of the submission request</p>
+<dt>Retorna:</dt><dd><p>Resposta da solicitação de submissão.</p>
 </dd>
 </dl>
 </dd></dl>
