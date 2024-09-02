@@ -88,17 +88,17 @@ class TaskHandler:
     def get_task_run_id(self):
         '''
         Resumo:
-            Recupera o ID de execução de uma tarefa (task) da API usando o task ID.
+            Em casos de utilização do MLFlow, Recupera-se o run_id de execução de uma tarefa (task) da API usando o task ID.
             A função conecta-se ao servidor utilizando credenciais de autenticação
             armazenadas em variáveis de ambiente, envia uma solicitação GET para recuperar
-            o ID de execução a partir do MLFLOW e retorna a resposta da API.
+            o run_id de execução a partir do MLFLOW e retorna a resposta da API.
 
         Exceções:
-            ValueError: Se a resposta da API indicar uma falha na recuperação do ID de execução da tarefa,
+            ValueError: Se a resposta da API indicar uma falha na recuperação do run_id de execução da tarefa,
             como um código de status inesperado.
 
         Retorna:
-            requests.models.Response: O objeto de resposta HTTP contendo as informações do ID de execução da tarefa.
+            requests.models.Response: O objeto de resposta HTTP contendo as informações do run_id de execução da tarefa.
         '''
         # Placeholder for logic to get task information
         print("Obtendo informações para o ID task_id: {}.".format(self.task_id))
@@ -121,8 +121,8 @@ class TaskHandler:
         if response.status_code == 200:
             print("Status obtido com sucesso!")
         else:
-            print("Erro ao obter o ID de execução da tarefa:", response.status_code, response.text)
-            raise ValueError("Falha ao recuperar o ID de execução da tarefa: {}".format(response.status_code))
+            print("Erro ao obter o run_id de execução da tarefa:", response.status_code, response.text)
+            raise ValueError("Falha ao recuperar o run_id de execução da tarefa: {}".format(response.status_code))
 
         return response
 

@@ -20,7 +20,7 @@ class Submitter:
 
             processor_file (str, obrigatório): O nome do arquivo do processador. Padrão é None.
 
-            runner_location (str, obrigatório): A localização do runner. Padrão é None.
+            runner_location (str, obrigatório): A localização do runner. Padrão é "atena02".
 
             execution_mode (str, obrigatório): O modo de execução ("mlflow" ou "no-mlflow"). Padrão é "mlflow".
 
