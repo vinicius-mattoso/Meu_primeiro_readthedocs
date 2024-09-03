@@ -85,7 +85,7 @@
 <a class="viewcode-back" href="../../biganchoring_ml_module.html#biganchoring_ml_module.submitter.Submitter.__init__">[documentos]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dataset_file</span> <span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">processor_file</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>\
                  <span class="n">runner_location</span><span class="o">=</span><span class="s2">&quot;atena02&quot;</span><span class="p">,</span> <span class="n">execution_mode</span><span class="o">=</span><span class="s2">&quot;mlflow&quot;</span><span class="p">,</span> <span class="n">experiment_name</span><span class="o">=</span><span class="s2">&quot;default_experiment&quot;</span><span class="p">,</span>\
-                 <span class="n">execution_command</span><span class="o">=</span><span class="s2">&quot;mlflow run project&quot;</span><span class="p">,</span>\
+                 <span class="n">execution_command</span><span class="o">=</span><span class="s2">&quot;mlflow run project&quot;</span><span class="p">,</span> <span class="n">tracking_uri</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>\
                  <span class="n">instance_type</span><span class="o">=</span><span class="s2">&quot;gpu&quot;</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="s2">&quot;default_account&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">model_params</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Resumo:</span>
@@ -98,13 +98,15 @@
 
 <span class="sd">            processor_file (str, obrigatório): O nome do arquivo do processador. Padrão é None.</span>
 
-<span class="sd">            runner_location (str, obrigatório): A localização do runner. Padrão é None.</span>
+<span class="sd">            runner_location (str, obrigatório): A localização do runner. Padrão é &quot;atena02&quot;.</span>
 
 <span class="sd">            execution_mode (str, obrigatório): O modo de execução (&quot;mlflow&quot; ou &quot;no-mlflow&quot;). Padrão é &quot;mlflow&quot;.</span>
 
 <span class="sd">            experiment_name (str, obrigatório): O nome do experimento. Padrão é &quot;default_experiment&quot;.</span>
 
 <span class="sd">            execution_command (str, obrigatório): O comando que o usuário deseja executar. Padrão é &quot;mlflow run project&quot;.</span>
+
+<span class="sd">            tracking_uri (str, obrigatório): O URI onde vai ocorrer o tracking do MLFlow. Padrão é None.</span>
 
 <span class="sd">            instance_type (str, obrigatório): O tipo de instância a ser utilizada. Padrão é &quot;gpu&quot;.</span>
 
@@ -123,7 +125,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">instance_type</span> <span class="o">=</span> <span class="n">instance_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">account</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config_path</span> <span class="o">=</span> <span class="s2">&quot;configured_json_by_inputs.json&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tracking_uri</span> <span class="o">=</span> <span class="s2">&quot;http://npab1420.petrobras.biz:5000/&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracking_uri</span> <span class="o">=</span> <span class="n">tracking_uri</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">default_image</span> <span class="o">=</span> <span class="s2">&quot;teste_sif_py310_miniforge3&quot;</span>
 
         <span class="c1"># Initialize model_params as None</span>

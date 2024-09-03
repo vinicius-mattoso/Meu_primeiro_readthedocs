@@ -7,7 +7,7 @@ import os
 class Submitter:
     def __init__(self, dataset_name=None, dataset_file =None, processor_file = None,\
                  runner_location="atena02", execution_mode="mlflow", experiment_name="default_experiment",\
-                 execution_command="mlflow run project",\
+                 execution_command="mlflow run project", tracking_uri = None,\
                  instance_type="gpu", account="default_account", **model_params):
         '''
         Resumo:
@@ -28,6 +28,8 @@ class Submitter:
 
             execution_command (str, obrigatório): O comando que o usuário deseja executar. Padrão é "mlflow run project".
 
+            tracking_uri (str, obrigatório): O URI onde vai ocorrer o tracking do MLFlow. Padrão é None.
+
             instance_type (str, obrigatório): O tipo de instância a ser utilizada. Padrão é "gpu".
 
             account (str, obrigatório): A conta a ser utilizada. Padrão é "default_account".
@@ -45,7 +47,7 @@ class Submitter:
         self.instance_type = instance_type
         self.account = account
         self.config_path = "configured_json_by_inputs.json"
-        self.tracking_uri = "http://npab1420.petrobras.biz:5000/"
+        self.tracking_uri = tracking_uri
         self.default_image = "teste_sif_py310_miniforge3"
 
         # Initialize model_params as None

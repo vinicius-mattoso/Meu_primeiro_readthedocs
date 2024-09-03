@@ -34,6 +34,7 @@ Submissão de uma task ao atena02
                   processor_file="test_processor.zip",
                   runner_location="atena02", execution_mode="mlflow", experiment_name="test_lib",
                   execution_command="mlflow run measurements_regression_training_right",
+                  tracking_uri="http://npab1420.petrobras.biz:5000/",
                   instance_type="gpu", account="twinscie", n_estimators=2, random_state=42)
 
    submission_response = sb.submit_task()
